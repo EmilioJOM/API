@@ -1,0 +1,91 @@
+package com.uade.tpo.backendGrupo6MieMa.entity;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
+import lombok.Data;
+import java.util.List;
+
+@Data
+@Entity
+public class Producto {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long producto_idProducto;
+
+    @Column
+    private String producto_nombre;
+
+    @Column
+    private String producto_descripcion;
+
+    //@Column
+    //private String producto_estado;
+
+    @Column
+    private int producto_precio;
+
+    @Column
+    private int producto_stock;
+
+    @Column
+    private String producto_imagen_url;
+
+    @Column(nullable = false)
+    private float producto_descuento = 0.0f;
+
+    @ManyToOne
+    @JoinColumn(name = "producto_idMarca", referencedColumnName = "marca_idMarca")
+    @JsonBackReference
+    private Marca marca;
+
+    @ManyToOne
+    @JoinColumn(name = "producto_idCategoria", referencedColumnName = "categoria_idCategoria")
+    @JsonBackReference
+    private Categoria categoria;
+
+    @OneToMany(mappedBy = "producto")
+    @JsonBackReference
+    private List<Detalle> detalles;
+}
+//
+//package com.uade.tpo.backendGrupo6MieMa.entity;
+//
+//import com.fasterxml.jackson.annotation.JsonBackReference;
+//import jakarta.persistence.*;
+//import lombok.Data;
+//
+//@Data
+//@Entity
+//public class Producto {
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long producto_idProducto;
+//
+//    @Column(nullable = false)
+//    private String producto_nombre;
+//
+//    @Column(nullable = false)
+//    private String producto_descripcion;
+//
+//    @Column(nullable = false)
+//    private int producto_precio;
+//
+//    @Column(nullable = false)
+//    private int producto_stock;
+//
+//    @Column(nullable = false)
+//    private String producto_imagen_url;
+//
+//    @Column(nullable = false)
+//    private float producto_descuento;
+//
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "marca_id")
+//    @JsonBackReference
+//    private Marca marca;
+//
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "categoria_id")
+//    @JsonBackReference
+//    private Categoria categoria;
+//}
