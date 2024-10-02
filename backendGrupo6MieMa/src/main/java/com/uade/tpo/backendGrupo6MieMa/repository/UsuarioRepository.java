@@ -2,6 +2,7 @@ package com.uade.tpo.backendGrupo6MieMa.repository;
 
 import com.uade.tpo.backendGrupo6MieMa.entity.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -14,4 +15,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     Optional<Usuario> findByEmail(@Param("email") String email);
 
     Optional<Usuario> findById(Long id);
+
+    @Modifying
+    @Query("DELETE FROM Usuario u WHERE u.usuario_idUsuario = :id")
+    void deleteById(@Param("id") Long id);
 }

@@ -9,4 +9,6 @@ public interface UsuarioService {
     Usuario crearUsuario(Usuario user);
     List<Usuario> obtenerTodosUsuarios();
     Optional<Usuario> obtenerPorId(Long id);
+
+    void eliminar(Long id);
 }

@@ -19,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -38,8 +39,16 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         @Autowired
         private final AuthenticationManager authenticationManager;
 
-
+        @Autowired
+        private UsuarioRepository usuarioRepository;
         public AuthenticationResponse register(RegisterRequest request) {
+                // buscar que no se repita el mail
+                Optional<Usuario> usuarioRepetido = usuarioRepository.findByEmail(request.getEmail());
+                if (usuarioRepetido.isPresent()) {
+                        throw new IllegalArgumentException("El correo ya está registrado.");
+                }
+
+
                 // Convierte el rol que viene en el request a un objeto Role y lo coloca en una lista
                 List<Role> roles = List.of(Role.valueOf(request.getRol().toString())); // Convertimos el string del request a Role
 
@@ -57,9 +66,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 var jwtToken = jwtService.generateToken(new org.springframework.security.core.userdetails.User(
                         usuario.getUsuario_email(),
                         usuario.getUsuario_contrasenia(),
-                        roles.stream().map(role -> new SimpleGrantedAuthority(role.name())).collect(Collectors.toList())  // Generamos las autoridades sin el prefijo "ROLE_"
+                        roles.stream().map(role -> new SimpleGrantedAuthority(role.name())).collect(Collectors.toList())
+                        // Generamos las autoridades sin el prefijo "ROLE_"
                 ));
-
                 return AuthenticationResponse.builder()
                         .accessToken(jwtToken)
                         .build();
@@ -73,13 +82,16 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                                 request.getEmail(),
                                 request.getPassword()));
 
-                var user = repository.findByEmail(request.getEmail())
+                var user = usuarioRepository.findByEmail(request.getEmail())
                         .orElseThrow();
                 // Generamos las autoridades sin el prefijo "ROLE_"
+                List<Role> roles = user.getUsuario_tipo_usuario();
+
                 var jwtToken = jwtService.generateToken(new org.springframework.security.core.userdetails.User(
                         user.getUsuario_email(),
                         user.getUsuario_contrasenia(),
-                        user.getUsuario_tipo_usuario().stream().map(role -> new SimpleGrantedAuthority(role.name())).collect(Collectors.toList())  // Generamos las autoridades sin el prefijo "ROLE_"
+                        roles.stream().map(role -> new SimpleGrantedAuthority(role.name())).collect(Collectors.toList())
+                        // Generamos las autoridades sin el prefijo "ROLE_"
                 ));
                 return AuthenticationResponse.builder()
                         .accessToken(jwtToken)

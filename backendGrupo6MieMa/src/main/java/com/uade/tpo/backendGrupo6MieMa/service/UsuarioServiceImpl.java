@@ -27,4 +27,9 @@ public class UsuarioServiceImpl implements UsuarioService{
     public Optional<Usuario> obtenerPorId(Long id) {
         return usuarioRepository.findById(id);
     }
+
+    @Override
+    public void eliminar(Long id) {
+        usuarioRepository.deleteById(id);
+    }
 }
