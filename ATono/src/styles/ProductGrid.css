@@ -1,5 +1,6 @@
 .product-grid {
     display: grid;
+    align-items: center;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Grid flexible */
     gap: 20px; /* Espaciado entre los productos */
     padding: 20px;
@@ -41,7 +42,7 @@
   }
   
   .product-button {
-    background-color: #ff6b6b;
+    background-color: #e87910;
     color: white;
     border: none;
     padding: 8px 15px;
@@ -51,5 +52,5 @@
   }
   
   .product-button:hover {
-    background-color: #ff5252;
+    background-color: #ffcc33;
   }

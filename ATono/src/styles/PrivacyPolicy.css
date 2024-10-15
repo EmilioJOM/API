@@ -1,0 +1,27 @@
+.privacy-policy {
+    padding: 2.15vh;
+}
+
+.privacy-policy h1 {
+    color: #e87910;
+}
+
+.privacy-policy h2 {
+    color: #e87910;
+}
+
+.privacy-policy h3 {
+    color: #e87910;
+    font-size: 2.5vh;
+    padding: 1vh;
+}
+
+.privacy-policy li {
+    margin-left: 3vh;
+}
+
+.privacy-policy p {
+    font-size: 2.5vh;
+    line-height: 1.6;
+    padding: 1.5vh;
+}

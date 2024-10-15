@@ -1,17 +1,43 @@
 .home {
-    background-color: white; 
-    color: #e87910;
     display: flex;
     flex-direction: column;
     text-align: center;
+
 }
 
-.home h1 {
-    font-size: 1.5rem;
-    height: 40px;
+.home h1{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: #915013;
 }
 
-.espacio {
-    padding: 50px;
+.home h3{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: #915013;
 }
+
+.contacto {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding-bottom: 4rem;
+    padding-top: 3rem;
+}
+
+@media screen and (max-width: 1198px){
+    .footer-coment h2{
+        margin-top: 1.9vh;
+    }
+}
+
+@media screen and (max-width: 639px){
+    .footer-coment h2{
+        margin-top: 2vh;
+        font-size: 2vh;
+    }
+}
+
 

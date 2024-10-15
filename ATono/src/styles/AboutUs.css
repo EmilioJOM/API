@@ -1,0 +1,94 @@
+.about-us {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 2vh;
+    background-color: #ffffff;
+    color: #444;
+    line-height: 1.8;
+}
+
+.about-us h1 {
+    font-size: 5.7vh;
+    margin-bottom: 3vh;
+    text-align: center;
+    color: #e87910;
+}
+
+.mission-vision {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 6vh;
+}
+
+.section {
+    flex: 1;
+    margin: 0 2vh;
+    padding: 3.1vh;
+    background: #f8f9fa;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.section h2 {
+    color: #e87910;
+    font-size: 3.6vh;
+    margin-bottom: 1.5vh;
+}
+
+.section p {
+    font-size: 1.9vh;
+    color: #555;
+}
+
+.values {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: auto;
+    gap: 2vh;
+    justify-content: center;
+    margin: 0 auto;
+    justify-content: center;
+    margin-left: 5.7vh;
+}
+
+.value {
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3vh;
+    padding: 3vh;
+    background: #f8f9fa;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    width: 55vh;
+}
+
+.valuesTitle {
+    font-size: 4.1vh;
+    margin-bottom: 3vh;
+    text-align: center;
+    color: #e87910;
+}
+
+
+.value h3 {
+    font-size: 2.9vh;
+    color: #e87910;
+    margin-bottom: 1.5vh;
+}
+
+.value p {
+    font-size: 1.9vh;
+    color: #555;
+}
+
+@media screen and (max-width: 1000px){
+
+
+    .values {
+        grid-template-columns: repeat(1, 1fr);
+        margin-left: 0;
+    }
+
+    .value {
+        width: 100%;
+    }
+}
