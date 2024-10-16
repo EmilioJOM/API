@@ -40,8 +40,8 @@ public class Usuario {
     @Column
     private String usuario_fechaRegistro;
 
-    @ElementCollection(fetch = FetchType.EAGER) // Carga los roles junto con el usuario
-    @Enumerated(EnumType.STRING) // Para que los roles se guarden como Strings en la base de datos
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
     private List<Role> usuario_tipo_usuario;
 
     @OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)

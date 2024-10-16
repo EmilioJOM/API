@@ -8,10 +8,10 @@ import com.uade.tpo.backendGrupo6MieMa.exceptions.BrandDuplicateException;
 import com.uade.tpo.backendGrupo6MieMa.service.MarcaService;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 
@@ -23,12 +23,12 @@ public class MarcaController {
     private MarcaService marcaService;
 
     @GetMapping
-    public ResponseEntity<Page<Marca>> getMarcas(
+    public ResponseEntity<List<Marca>> getMarcas(
             @RequestParam(required = false) Integer page,
             @RequestParam(required = false) Integer size) {
         if (page == null || size == null)
-            return ResponseEntity.ok(marcaService.getMarcas(PageRequest.of(0, Integer.MAX_VALUE)));
-        return ResponseEntity.ok(marcaService.getMarcas(PageRequest.of(page, size)));
+            return ResponseEntity.ok(marcaService.getMarcas(PageRequest.of(0, Integer.MAX_VALUE)).getContent());
+        return ResponseEntity.ok(marcaService.getMarcas(PageRequest.of(page, size)).getContent());
     }
 
     @GetMapping("/{marcaId}")
@@ -47,6 +47,12 @@ public class MarcaController {
     @DeleteMapping("/deleteAllDataAndResetId")
     public ResponseEntity<Void> deleteAllDataAndResetId() {
         marcaService.deleteAllDataAndResetId();
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/{marcaId}")
+    public ResponseEntity<Void> deleteMarcaById(@PathVariable Long marcaId) {
+        marcaService.deleteMarcaById(marcaId);
         return ResponseEntity.noContent().build();
     }
 

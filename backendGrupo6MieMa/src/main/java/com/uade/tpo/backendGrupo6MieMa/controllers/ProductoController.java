@@ -36,6 +36,12 @@ public class ProductoController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @DeleteMapping("/{productoId}")
+    public ResponseEntity<Void> eliminarProductoPorId(@PathVariable Long productoId) {
+        productoService.deleteProductoById(productoId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
     @GetMapping("/{productoId}")
     public ResponseEntity<Producto> getProductoById(@PathVariable Long productoId) {
         Optional<Producto> result = productoService.getProductoById(productoId);
@@ -58,7 +64,6 @@ public class ProductoController {
         return ResponseEntity.ok(producto);
     }
 
-    // Endpoint para actualizar el precio de un producto
     @PutMapping("/{id}/precio")
     public ResponseEntity<Producto> actualizarPrecio(@PathVariable Long id, @RequestParam int nuevoPrecio) {
         Producto productoActualizado = productoService.actualizarPrecio(id, nuevoPrecio);

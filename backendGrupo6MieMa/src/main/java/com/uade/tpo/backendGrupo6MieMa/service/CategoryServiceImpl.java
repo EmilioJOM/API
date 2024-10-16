@@ -36,4 +36,8 @@ public class CategoryServiceImpl implements CategoryService {
     public void deleteCategoriesWithNullDescription() {
         categoryRepository.deleteCategoriesWithNullDescription();
     }
+
+    public void deleteCategoryById(Long categoryId) {
+        categoryRepository.deleteById(categoryId);
+    }
 }

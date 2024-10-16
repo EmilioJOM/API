@@ -2,7 +2,6 @@ package com.uade.tpo.backendGrupo6MieMa.service;
 
 import com.uade.tpo.backendGrupo6MieMa.entity.Detalle;
 import com.uade.tpo.backendGrupo6MieMa.entity.Producto;
-import com.uade.tpo.backendGrupo6MieMa.entity.Orden;
 import com.uade.tpo.backendGrupo6MieMa.repository.DetalleRepository;
 import com.uade.tpo.backendGrupo6MieMa.repository.ProductoRepository;
 import com.uade.tpo.backendGrupo6MieMa.repository.OrdenRepository;
@@ -63,5 +62,7 @@ public class DetalleServiceImpl implements DetalleService {
         detalle.setDetalle_estado(estado);
         detalleRepository.save(detalle);
     }
+
+
 
 }

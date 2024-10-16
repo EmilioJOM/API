@@ -7,6 +7,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+
 public class UsuarioDetails implements UserDetails {
 
     private final Usuario user;
@@ -17,9 +18,8 @@ public class UsuarioDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // Convierte los roles de la entidad Usuario a GrantedAuthority sin el prefijo "ROLE_"
         return user.getUsuario_tipo_usuario().stream()
-                .map(role -> new SimpleGrantedAuthority(role.name()))  // Usa el nombre del rol directamente
+                .map(role -> new SimpleGrantedAuthority(role.name()))
                 .collect(Collectors.toList());
     }
 
@@ -27,32 +27,32 @@ public class UsuarioDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        return user.getUsuario_contrasenia(); // Devuelve la contraseña
+        return user.getUsuario_contrasenia();
     }
 
     @Override
     public String getUsername() {
-        return user.getUsuario_email(); // Devuelve el email como nombre de usuario
+        return user.getUsuario_email();
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return true; // Ajusta según tu lógica
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true; // Ajusta según tu lógica
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true; // Ajusta según tu lógica
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return true; // Ajusta según tu lógica
+        return true;
     }
 }
 

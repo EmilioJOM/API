@@ -6,7 +6,6 @@ import com.uade.tpo.backendGrupo6MieMa.entity.dto.OrderRequest;
 import com.uade.tpo.backendGrupo6MieMa.service.OrdenService;
 import com.uade.tpo.backendGrupo6MieMa.service.DetalleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,12 +32,9 @@ public class OrdenController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<Orden>> obtenerTodasOrdenes(
-            @RequestParam(required = false) Integer page,
-            @RequestParam(required = false) Integer size) {
-        if (page == null || size == null)
-            return ResponseEntity.ok(ordenService.getOrdenes(PageRequest.of(0, Integer.MAX_VALUE)));
-        return ResponseEntity.ok(ordenService.getOrdenes(PageRequest.of(page, size)));
+    public ResponseEntity<List<Orden>> obtenerTodasOrdenes() {
+        List<Orden> ordenes = ordenService.getOrdenes(PageRequest.of(0, Integer.MAX_VALUE)).getContent();
+        return ResponseEntity.ok(ordenes);
     }
 
     @GetMapping("/{ordenId}")
@@ -62,6 +58,12 @@ public class OrdenController {
     @DeleteMapping
     public ResponseEntity<Void> eliminarTodasOrdenes() {
         ordenService.deleteAllOrdenes();
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @DeleteMapping("/{ordenId}")
+    public ResponseEntity<Void> eliminarOrdenPorId(@PathVariable Long ordenId) {
+        ordenService.deleteOrdenById(ordenId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

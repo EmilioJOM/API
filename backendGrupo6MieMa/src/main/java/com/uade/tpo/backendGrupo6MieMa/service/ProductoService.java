@@ -13,4 +13,5 @@ public interface ProductoService {
     Producto actualizarStock(Long productoId, int nuevoStock);
     Producto aplicarDescuento(Long productoId, float descuento);
     Producto actualizarPrecio(Long id, int nuevoPrecio);
+    void deleteProductoById(Long productoId);
 }

@@ -92,4 +92,8 @@ public class ProductoServiceImpl implements ProductoService {
         return productoRepository.save(producto);
     }
 
+    public void deleteProductoById(Long productoId) {
+        productoRepository.deleteById(productoId);
+    }
+
 }

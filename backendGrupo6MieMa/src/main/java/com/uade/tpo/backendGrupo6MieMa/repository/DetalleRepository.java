@@ -14,4 +14,5 @@ public interface DetalleRepository extends JpaRepository<Detalle, Long> {
     List<Detalle> findByOrden(Orden orden);
     @Query("SELECT d FROM Detalle d WHERE d.orden.orden_idOrden = :ordenId")
     List<Detalle> findByOrden_Orden_idOrden(@Param("ordenId") Long ordenId);
+
 }

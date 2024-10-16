@@ -16,4 +16,5 @@ public interface DetalleService {
     List<Detalle> obtenerTodosDetalles();
     Detalle crearDetalle(int cantidad, Long productoId, String estado);
     void actualizarEstadoDetalle(Long detalleId, String estado);
+
 }

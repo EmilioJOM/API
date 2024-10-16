@@ -8,6 +8,7 @@ import com.uade.tpo.backendGrupo6MieMa.exceptions.CategoryDuplicateException;
 import com.uade.tpo.backendGrupo6MieMa.service.CategoryService;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +24,12 @@ public class CategoriesController {
     private CategoryService categoryService;
 
     @GetMapping
-    public ResponseEntity<Page<Categoria>> getCategories(
+    public ResponseEntity<List<Categoria>> getCategories(
             @RequestParam(required = false) Integer page,
             @RequestParam(required = false) Integer size) {
         if (page == null || size == null)
-            return ResponseEntity.ok(categoryService.getCategories(PageRequest.of(0, Integer.MAX_VALUE)));
-        return ResponseEntity.ok(categoryService.getCategories(PageRequest.of(page, size)));
+            return ResponseEntity.ok(categoryService.getCategories(PageRequest.of(0, Integer.MAX_VALUE)).getContent());
+        return ResponseEntity.ok(categoryService.getCategories(PageRequest.of(page, size)).getContent());
     }
 
     @GetMapping("/{categoryId}")
@@ -50,6 +51,12 @@ public class CategoriesController {
     @DeleteMapping("/deleteNullDescriptions")
     public ResponseEntity<Void> deleteCategoriesWithNullDescription() {
         categoryService.deleteCategoriesWithNullDescription();
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/{categoryId}")
+    public ResponseEntity<Void> deleteCategoryById(@PathVariable Long categoryId) {
+        categoryService.deleteCategoryById(categoryId);
         return ResponseEntity.noContent().build();
     }
 

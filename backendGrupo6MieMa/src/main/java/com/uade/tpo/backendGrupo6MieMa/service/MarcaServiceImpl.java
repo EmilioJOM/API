@@ -1,6 +1,5 @@
 package com.uade.tpo.backendGrupo6MieMa.service;
 
-import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -40,4 +39,9 @@ public class MarcaServiceImpl implements MarcaService {
         marcaRepository.deleteAll();
         jdbcTemplate.execute("ALTER TABLE marca AUTO_INCREMENT = 1");
     }
+
+    public void deleteMarcaById(Long marcaId) {
+        marcaRepository.deleteById(marcaId);
+    }
+
 }

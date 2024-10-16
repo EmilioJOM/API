@@ -17,4 +17,5 @@ public interface OrdenService {
     void deleteAllOrdenes();
     void confirmarOrden(Long ordenId);
     void agregarDetalle(Long ordenId, List<DetalleRequest> detalleRequests);
+    void deleteOrdenById(Long ordenId);
 }

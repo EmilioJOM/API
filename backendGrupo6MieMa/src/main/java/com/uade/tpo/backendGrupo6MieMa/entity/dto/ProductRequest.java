@@ -11,5 +11,5 @@ public class ProductRequest {
     private String productoImagenUrl;
     private Long marcaId;
     private Long categoriaId;
-    private Float productoDescuento; // Agregado el campo descuento
+    private Float productoDescuento;
 }

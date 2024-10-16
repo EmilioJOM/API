@@ -1,6 +1,5 @@
 package com.uade.tpo.backendGrupo6MieMa.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -18,4 +17,6 @@ public interface MarcaService {
     Marca createMarca(String nombre) throws BrandDuplicateException;
 
     void deleteAllDataAndResetId();
+
+    void deleteMarcaById(Long marcaId);
 }

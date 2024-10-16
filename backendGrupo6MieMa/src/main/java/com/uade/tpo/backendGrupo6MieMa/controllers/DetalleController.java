@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -30,12 +31,12 @@ public class DetalleController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<Detalle>> obtenerTodosDetalles(
+    public ResponseEntity<List<Detalle>> obtenerTodosDetalles(
             @RequestParam(required = false) Integer page,
             @RequestParam(required = false) Integer size) {
         if (page == null || size == null)
-            return ResponseEntity.ok(detalleService.getDetalles(PageRequest.of(0, Integer.MAX_VALUE)));
-        return ResponseEntity.ok(detalleService.getDetalles(PageRequest.of(page, size)));
+            return ResponseEntity.ok(detalleService.getDetalles(PageRequest.of(0, Integer.MAX_VALUE)).getContent());
+        return ResponseEntity.ok(detalleService.getDetalles(PageRequest.of(page, size)).getContent());
     }
 
     @GetMapping("/{detalleId}")

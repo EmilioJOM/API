@@ -30,31 +30,9 @@ public class AuthenticationController {
     }
 
 
-//    @PostMapping("/authenticate")
-//    public ResponseEntity<?> authenticateUser(@RequestBody AuthenticationRequest request) {
-//        // Lógica para autenticar al usuario
-//        String username = request.getEmail();
-//        // Generar un nuevo token de autenticación
-//        String authToken = jwtService.generateToken(username);
-//        return ResponseEntity.ok(new AuthenticationResponse(authToken));
-//    }
-
-
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request) {
         return ResponseEntity.ok(service.authenticate(request));
     }
 
-//    @PostMapping("/confirm-registration")
-//    public ResponseEntity<?> confirmRegistration(@RequestParam("token") String token) {
-//        // Validar el token de registro
-//        String username = jwtService.extractUsername(token);
-//        if (username != null && jwtService.isTokenValid(token, userDetailsService.loadUserByUsername(username))) {
-//            // Registrar al usuario y generar un nuevo token de autenticación
-//            String authToken = jwtService.generateRegistrationToken(username);
-//            return ResponseEntity.ok(new AuthenticationResponse(authToken));
-//        } else {
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid registration token");
-//        }
-//    }
 }
