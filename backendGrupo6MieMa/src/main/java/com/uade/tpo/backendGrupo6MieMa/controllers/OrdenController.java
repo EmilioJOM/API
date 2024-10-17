@@ -33,7 +33,7 @@ public class OrdenController {
 
     @GetMapping
     public ResponseEntity<List<Orden>> obtenerTodasOrdenes() {
-        List<Orden> ordenes = ordenService.getOrdenes(PageRequest.of(0, Integer.MAX_VALUE)).getContent();
+        List<Orden> ordenes = ordenService.getOrdenes();
         return ResponseEntity.ok(ordenes);
     }
 

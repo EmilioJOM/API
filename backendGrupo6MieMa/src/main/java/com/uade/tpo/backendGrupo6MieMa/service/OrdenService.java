@@ -12,7 +12,7 @@ import java.util.Optional;
 public interface OrdenService {
     Orden crearOrden(OrderRequest orderRequest);
     List<Orden> obtenerTodasOrdenes();
-    Page<Orden> getOrdenes(PageRequest pageRequest);
+    List<Orden> getOrdenes();
     Optional<Orden> getOrdenById(Long ordenId);
     void deleteAllOrdenes();
     void confirmarOrden(Long ordenId);

@@ -45,8 +45,8 @@ public class OrdenServiceImpl implements OrdenService {
     }
 
     @Override
-    public Page<Orden> getOrdenes(PageRequest pageRequest) {
-        return ordenRepository.findAll(pageRequest);
+    public List<Orden> getOrdenes() {
+        return ordenRepository.findAllOrden();
     }
 
     @Override
